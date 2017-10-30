@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Raite</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src='http://maps.google.com/maps/api/js?libraries=places&key=AIzaSyCf-HqHWDrF23bBxUllm3bJjm2BzFLEiZo'></script>
+    <script src="js/locationpicker.jquery.js"></script>
+</head>
+<body>
+
+    <div class="container is-fluid">
+        <nav class="nav">
+
+            <div class="nav-left">
+                <a id="back-action" class="nav-item f-white">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+                <a class="nav-item">
+                    <img src="images/logo-blanco.png" alt="">
+                </a>
+            </div>
+
+            <span class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+
+           <div class="nav-right nav-menu">
+                <a id="signin-action" class="nav-item" data-view="#signin">
+                    Iniciar sesion
+                </a>
+                <a id="account-action" class="nav-item" data-view="#mi-cuenta">
+                    Mi Cuenta
+                </a>
+                <a id="signup-action" class="nav-item" data-view="#signup">
+                    Registro
+                </a>
+                <a id="logout-action" class="nav-item">
+                    Salir
+                </a>
+            </div>
+
+        </nav>
+
+        <div id="signup" class="view">
+            <div class="columns noMargin">
+                <div class="column">
+                    <form id="signup-form" class="form-login">
+                        <div class="field">
+                            <label class="label">Nombre</label>
+                            <p class="control">
+                                <input name="name" required="" class="input" type="text">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Correo</label>
+                            <p class="control">
+                                <input name="email" required="" class="input" type="email">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Contraseña</label>
+                            <p class="control">
+                                <input name="password" required="" class="input" type="password">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Confirmar contraseña</label>
+                            <p class="control">
+                                <input name="password_confirmation" required="" class="input" type="password">
+                            </p>
+                        </div>
+                        <div class="field center margin-top">
+                            <input type="submit" class="button is-info" value="Registrarse">
+                        </div>
+                    </form>
+                    <h2 class="center">¿Ya tienes cuenta? <a id="signin-button" data-view="#signin">Ingresa</a>.</h2>
+                </div>
+            </div>
+        </div>
+
+        <div id="signin" class="view">
+            <div class="columns noMargin">
+                <div class="column">
+                    <div class="center">
+                        <img width="30%" src="images/logo-completo.png" class="logo">
+                    </div>
+                    <form id="signin-form" class="form-login">
+                        <div class="field">
+                            <label class="label">Correo</label>
+                            <p class="control">
+                                <input name="email" required="" class="input" type="email">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Contraseña</label>
+                            <p class="control">
+                                <input name="password" required="" class="input" type="password">
+                            </p>
+                        </div>
+                        <div class="field center margin-top">
+                            <input type="submit" class="button is-info" value="Ingresar">
+                        </div>
+                    </form>
+                    <h2 class="center">¿Aún no tienes cuenta? <a id="signup-button" data-view="#signup">Registrate</a>.</h2>
+                </div>
+            </div>
+        </div>
+
+        <div id="index" class="view">
+            <div class="columns noMargin">
+                <div class="column">
+                    <div class="field center margin-top">
+                        <h2 class="center margin-bottom subtitle">¿Quieres dar "RIDE"?</h2>
+                        <a class="button is-info btn-width" data-view="#crear-viaje">
+                            <span>Publicar viaje</span>
+                        </a>
+                    </div>
+                    <div class="field center margin-top">
+                        <h2 class="center margin-bottom subtitle">¿Quieres que te den "RIDE"?</h2>
+                        <a class="button is-info btn-width" data-view="#buscar-viaje">
+                            <span>Buscar viaje</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="field center margin-top">
+                <h2 class="center margin-bottom subtitle">Historial</h2>
+                <a class="button is-info btn-width margin-bottom" data-view="#ver-viajes">
+                    <span>Ver viajes</span>
+                </a>
+            </div>
+            <div class="block margin-top center">
+                <span class="subtitle">Ultima vez que dí "RIDE"</span>
+            </div>
+            <div class="box azul">
+                <article class="media">
+                    <div class="media-content">
+                        <div class="content f-white center">
+                            <p>
+                                <i class="fa fa-car car-icon" aria-hidden="true"></i> <small> AVEO 2015 / 22 de Febrero 2017</small> / <small>Chihuahua - CD. Juarez</small>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="block margin-top center">
+                <span class="subtitle">Ultima vez que me dieron "RIDE"</span>
+            </div>
+            <div class="box azul">
+                <article class="media">
+                    <div class="media-content">
+                        <div class="content f-white center">
+                            <p>
+                                <small>VENTO 2014 / 10 de marzo 2017</small> / <small>Chihuahua - Monterrey </small>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div id="mi-cuenta" class="view">
+            <div class="gray-bg">
+                <div class="center">
+                    <a data-view="#foto"><img width="30%" class="image-placeholder" src="images/placeholder.png"></a>
+                    <div class="block">
+                        <a data-view="#foto" class="margin-bottom button is-info">Cambiar Foto</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block notification is-info bloque-titulo">
+                Información personal
+            </div>
+            <div class="block center">
+                <a class="is-info" data-view="#biografia">Escribir minibiografía</a>
+            </div>
+            <div class="block center">
+                <a class="is-info" data-view="#preferencias">Seleccionar preferencias</a>
+            </div>
+
+            <div class="block notification is-info bloque-titulo">
+                Certificaciónes
+            </div>
+            <div class="block center">
+                <a class="is-info" data-view="#certificacion">Certificar identificación oficial</a>
+            </div>
+
+            <div class="block notification is-info bloque-titulo">
+                Métodos de pago
+            </div>
+            <div class="block center">
+                <a class="is-info" data-view="#nuevo-metodo">Nuevo método de pago</a>
+            </div>
+            <div class="block center">
+                <a class="is-info" data-view="#metodos">Modificar métodos de pago</a>
+            </div>
+
+            <div class="block notification is-info bloque-titulo noMargin">
+                Automoviles
+            </div>
+            <div class="gray-bg">
+                <div class="center columns noMargin is-mobile">
+                    <div class="column">
+                        <a><img width="80%" class="image-placeholder" src="images/car.png"></a>
+                    </div>
+                    <div class="column margin-top">
+                        <div class="block">
+                            <a class="margin-bottom button is-info" data-view="#editar-auto">Editar</a>
+                            <a href="#"> <i class="fa fa-times remove-car" aria-hidden="true"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block center margin-top margin-bottom">
+                <a class="is-info" data-view="#nuevo-auto">Añadir un automovil</a>
+            </div>
+        </div>
+
+        <div id="preferencias" class="view">
+            <div class="block notification is-info bloque-titulo">
+                Preferencias
+            </div>
+
+            <form class="biografia" action="" method="post">
+                <div class="columns noMargin is-mobile">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Conversación</label>
+                            <p class="control">
+                                <span class="select">
+                                    <select>
+                                        <option>Soy callado</option>
+                                        <option>Depende del momento</option>
+                                        <option>¡Me encanta platicar!</option>
+                                    </select>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Fumar en el auto</label>
+                            <p class="control">
+                                <span class="select">
+                                    <select>
+                                        <option>No quiero que se fume</option>
+                                        <option>A veces permito fumar</option>
+                                        <option>El tabaco no me molesta</option>
+                                    </select>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Mascotas</label>
+                            <p class="control">
+                                <span class="select">
+                                    <select>
+                                        <option>No se aceptan mascotas</option>
+                                        <option>¡Depende de la mascota!</option>
+                                        <option>Las mascotas son bienvenidas</option>
+                                    </select>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Música</label>
+                            <p class="control">
+                                <span class="select">
+                                    <select>
+                                        <option>El silencio es oro</option>
+                                        <option>Escucho música si tengo ganas</option>
+                                        <option>Depende lo que se escuche</option>
+                                    </select>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field center margin-top">
+                            <input type="submit" class="button is-info" value="Guardar preferencias">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <div id="foto" class="view">
+            <div class="gray-bg">
+                <div class="center">
+                    <img width="30%" class="image-placeholder" src="images/buena-foto.jpg">
+                </div>
+            </div>
+
+            <div class="center margin-top">
+                <span class="title margin-top">Ejemplo de una buena foto:</span>
+            </div>
+            <div class="block margin-top center">
+                <ul class="subtitle">
+                    <li><span class="letra-azul">✔</span> Sin lentes de sol</li>
+                    <li><span class="letra-azul">✔</span> mirando a la cámara</li>
+                    <li><span class="letra-azul">✔</span> Sólo tu</li>
+                    <li><span class="letra-azul">✔</span> Clara y con luz</li>
+                </ul>
+            </div>
+            <div class="block center">
+                <div class="field">
+                    <a class="button is-info">Seleccionar foto de la galeria</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="biografia" class="view">
+            <div class="gray-bg">
+                <div class="center columns noMargin is-mobile">
+                    <div class="column">
+                        <a data-view="#foto"><img width="40%" class="image-placeholder" src="images/placeholder.png"></a>
+                    </div>
+                    <div class="column margin-top">
+                        <div class="block">
+                            <a class="margin-bottom button is-info" data-view="#foto">Cambiar Foto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block notification is-info bloque-titulo">
+                Información personal
+            </div>
+
+            <form class="biografia" action="" method="post">
+                <div class="columns noMargin is-mobile">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Soy</label>
+                            <p class="control">
+                                <span class="select">
+                                    <select>
+                                        <option>Hombre</option>
+                                        <option>Mujer</option>
+                                    </select>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Nombre</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="Juan">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Apellidos</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="Perez Perez">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Año de Nacimiento</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="1990">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Minibiografía</label>
+                            <p class="control">
+                                <textarea class="textarea" placeholder="Escribe tu biografía. Los usuarios con perfil completo tienen más probabilidades de encontrar compañeros de viaje."></textarea>
+                            </p>
+                        </div>
+                        <div class="field center margin-top">
+                            <input type="submit" class="button is-info" value="Guardar información">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="block notification is-info bloque-titulo">
+                E-mail
+            </div>
+
+            <form class="biografia" action="index.html" method="post">
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="email" placeholder="juan@gmail.com">
+                    </p>
+                </div>
+                <div class="field center margin-top">
+                    <input type="submit" class="button is-info" value="Guardar E-mail">
+                </div>
+            </form>
+
+            <div class="block notification is-info bloque-titulo">
+                Número de Celular
+            </div>
+
+            <form class="biografia" action="index.html" method="post">
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="number" placeholder="+52">
+                    </p>
+                </div>
+                <div class="field center margin-top">
+                    <input type="submit" class="button is-info" value="Guardar Número">
+                </div>
+            </form>
+        </div>
+
+        <div id="certificacion" class="view">
+            <div class="block notification is-info bloque-titulo">
+                Certificación Identificación Oficial
+            </div>
+
+            <form class="biografia" action="" method="post">
+                <div class="columns noMargin is-mobile">
+
+                    <div class="column">
+                        <div class="field">
+                            <img src="images/id-placeholder.jpg" alt="">
+                            <div class="field">
+                                <h2 class="center margin-bottom subtitle">Elige el tipo de identificacion que quieres subir</h2>
+                            </div>
+                            <div class="block notification is-info bloque-titulo center">
+                                <h3>Con 3 documentos o mas seras un chofer certificado por "RIDE". (Estrella en perfil)</h3>
+                            </div>
+                            <p class="control center">
+                                <label class="radio">
+                                    <input type="radio" name="question">
+                                        IFE/INE
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="question">
+                                        Carta de no antecedentes penales
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="question">
+                                        Examen medico
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="question">
+                                        Constancia de trabajo
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="question">
+                                        Pasaporte
+                                </label>
+                            </p>
+                        </div>
+
+                        <div class="field center margin-top">
+                            <a class="button is-info" data-view="#certificacion-subir">Continuar</a>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <div id="certificacion-subir" class="view">
+            <div class="block notification is-info bloque-titulo">
+                Subir Certificación Oficial
+            </div>
+
+            <form class="biografia" action="" method="post">
+                <div class="columns noMargin is-mobile">
+
+                    <div class="column">
+                        <div class="field center">
+                            <h2 class="center margin-bottom subtitle">Sube una foto con buena resolución de tu licencia de conductor</h2>
+                            <img src="images/ejemplo-certificaciones.jpg" alt="" width="80%">
+                        </div>
+
+                        <div class="field center margin-top">
+                            <a class="button is-info">Subir foto</a>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <div id="nuevo-auto" class="view">
+            <div class="gray-bg">
+                <div class="center">
+                    <a data-view="#foto"><img width="30%" class="image-placeholder" src="images/placeholder-car.png"></a>
+                    <div class="block">
+                        <a class="margin-bottom button is-info" data-view="#foto">Cargar foto automovil</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block notification is-info bloque-titulo">
+                Añadir automovil
+            </div>
+
+            <form class="biografia" action="" method="post">
+                <div class="columns noMargin is-mobile">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Marca</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="Ejemplo: Nissan, Ford, etc.">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Vehiculo</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="Ejemplo: March, Versa, etc.">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Modelo</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="Ejemplo: 2005, 2010, etc.">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Color</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="Ejemplo: Rojo, Azul, Plata, etc.">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Tipo de Auto</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="Ejemplo: Sedan, camioneta, etc.">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label"># de pasajeros posibles</label>
+                            <p class="control">
+                                <input class="input" type="number" placeholder="Ejemplo: 3, 4, etc.">
+                            </p>
+                        </div>
+                        <div class="field center margin-top">
+                            <form data-title="Auto" data-message="agregado con exito">
+                                <input type="submit" class="button is-info margin-bottom" value="Guardar automovil">
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <div id="nuevo-metodo" class="view">
+
+            <div class="block notification is-info bloque-titulo">
+                Añadir método de pago
+            </div>
+
+            <form class="biografia" action="" method="post">
+                <div class="columns noMargin is-mobile">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Nombre y Apellidos</label>
+                            <p class="control">
+                                <input class="input" type="text" placeholder="Juan Perez Perez">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label"># de Tarjeta</label>
+                            <p class="control">
+                                <input class="input" type="number" placeholder="1234 1234 1234 1234">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Mes de expiración</label>
+                            <p class="control">
+                                <input class="input" type="number" min="1" max="31" placeholder="15">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Año de expiración</label>
+                            <p class="control">
+                                <input class="input" type="number" placeholder="09">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Codigo de seguridad</label>
+                            <p class="control">
+                                <input class="input" type="number" placeholder="123">
+                            </p>
+                        </div>
+                        <div class="field center margin-top">
+                            <input type="submit" class="button is-info" value="Guardar método de pago">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="editar-metodo" class="view">
+
+            <div class="block notification is-info bloque-titulo">
+                Editar método de pago
+            </div>
+
+            <form class="biografia" action="" method="post">
+                <div class="columns noMargin is-mobile">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Nombre y Apellidos</label>
+                            <p class="control">
+                                <input class="input" type="text" value="Juan Perez Perez">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label"># de Tarjeta</label>
+                            <p class="control">
+                                <input class="input" type="number" value="3830127338295674">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Mes de expiración</label>
+                            <p class="control">
+                                <input class="input" type="number" min="1" max="31" value="15">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Año de expiración</label>
+                            <p class="control">
+                                <input class="input" type="number" value="09">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Codigo de seguridad</label>
+                            <p class="control">
+                                <input class="input" type="number" value="086">
+                            </p>
+                        </div>
+                        <div class="field center margin-top">
+                            <input type="submit" class="button is-info" value="Guardar método de pago">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="metodos" class="view">
+
+            <div class="block notification is-info bloque-titulo">
+                Métodos de pago
+            </div>
+
+            <form class="biografia" action="" method="post">
+                <div class="columns noMargin is-mobile">
+
+                    <div class="column">
+                        <div class="gray-bg">
+                            <div class="center columns noMargin is-mobile">
+                                <div class="column">
+                                    **** **** **** 5674
+                                </div>
+                                <div class="column margin-top">
+                                    <div class="block">
+                                        <a class="margin-bottom button is-info" data-view="#editar-metodo">Editar</a>
+                                        <a href="#"> <i class="fa fa-times remove-car" aria-hidden="true"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <div id="editar-auto" class="view">
+            <div class="gray-bg">
+                <div class="center">
+                    <a data-view="#foto"><img width="70%" class="image-placeholder" src="images/car.png"></a>
+                    <div class="block">
+                        <a data-view="#foto" class="margin-bottom button is-info">Cargar foto automovil</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block notification is-info bloque-titulo">
+                Añadir automovil
+            </div>
+
+            <form class="biografia" action="" method="post">
+                <div class="columns noMargin is-mobile">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Marca</label>
+                            <p class="control">
+                                <input class="input" type="text" value="Nissan" placeholder="Ejemplo: Nissan, Ford, etc.">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Vehiculo</label>
+                            <p class="control">
+                                <input class="input" type="text"value="March" placeholder="Ejemplo: March, Versa, etc.">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Modelo</label>
+                            <p class="control">
+                                <input class="input" type="text" value="2016" placeholder="Ejemplo: 2005, 2010, etc.">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Color</label>
+                            <p class="control">
+                                <input class="input" type="text" value="Turquesa" placeholder="Ejemplo: Rojo, Azul, Plata, etc.">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label">Tipo de Auto</label>
+                            <p class="control">
+                                <input class="input" type="text" value="hatchback" placeholder="Ejemplo: Sedan, camioneta, etc.">
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label"># de pasajeros posibles</label>
+                            <p class="control">
+                                <input class="input" type="number" value="3" placeholder="Ejemplo: 3, 4, etc.">
+                            </p>
+                        </div>
+                        <div class="field center margin-top">
+                            <input type="submit" class="button is-info" value="Guardar automovil">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <div id="crear-viaje" class="view">
+            <div class="block notification is-info bloque-titulo">
+                Recoges y dejas a los pasajeros
+            </div>
+            <div class="column">
+                <div class="field">
+                    <label class="label">Origen</label>
+                    <p class="control">
+                        <span class="select">
+                            <select>
+                                <option>Chihuahua, Chihuahua</option>
+                            </select>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <label class="label">Destino</label>
+                    <p class="control">
+                        <span class="select">
+                            <select>
+                                <option>Hidalgo del Parral, Chihuahua</option>
+                                <option>Cd. Juarez, Chihuahua</option>
+                            </select>
+                        </span>
+                    </p>
+                </div>
+                <hr>
+            </div>
+            <div class="block notification is-info bloque-titulo">
+                Día y hora
+            </div>
+            <div class="column">
+                <div class="field">
+                    <p class="control">
+                        <label class="checkbox">
+                            <input id="viaje-redondo" type="checkbox" checked="">
+                                Viaje redondo
+                        </label>
+                    </p>
+                </div>
+                <div class="field">
+                    <label class="label">Fecha de ida</label>
+                    <p class="control">
+                        <input class="input" type="datetime-local" placeholder="">
+                    </p>
+                </div>
+                <div id="fecha-vuelta" class="field">
+                    <label class="label">Fecha de vuelta</label>
+                    <p class="control">
+                        <input class="input" type="datetime-local" placeholder="">
+                    </p>
+                </div>
+            </div>
+            <div class="block notification is-info bloque-titulo">
+                Automovil
+            </div>
+            <div class="column">
+                <div class="field">
+                    <label class="label">Selecciona el auto que usaras en el viaje</label>
+                    <p class="control">
+                        <span class="select">
+                            <select>
+                                <option>MARCH</option>
+                            </select>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="block notification is-info bloque-titulo">
+                Precio del viaje
+            </div>
+            <div class="column">
+                <div class="field">
+                    <div class="field">
+                        <p class="control">
+                            Tarifa Base = $50.00
+                        </p>
+                        <p class="control">
+                            363 KM * $0.85 p/km = $308.55
+                        </p>
+                        <p class="control">
+                            Total = $358.55 por persona
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field center margin-top">
+                <form data-title="Viaje" data-message="creado con exito">
+                    <input type="submit" class="button is-info margin-bottom" value="Publicar Viaje">
+                </form>
+            </div>
+        </div>
+
+        <div id="ver-viaje" class="view">
+            <div class="block notification is-info bloque-titulo">
+                Recoges y dejas a los pasajeros
+            </div>
+            <div class="column">
+                <div class="field">
+                    <label class="label">Origen</label>
+                    <h3>Chihuahua, Chihuahua</h3>
+                </div>
+                <div class="field">
+                    <label class="label">Destino</label>
+                    <h3>Cd. Juarez, Chihuahua</h3>
+                </div>
+                <hr>
+            </div>
+            <div class="block notification is-info bloque-titulo">
+                Día y hora
+            </div>
+            <div class="column">
+                <div class="field">
+                    <label class="label">Fecha de ida</label>
+                    <h3>05/06/2017 14:30</h3>
+                </div>
+            </div>
+            <div class="block notification is-info bloque-titulo">
+                Automovil
+            </div>
+            <div class="column">
+                <div class="field">
+                    <label class="label">El auto que usaras en el viaje</label>
+                    <h3>NISSAN, MARCH</h3>
+                </div>
+            </div>
+            <div class="block notification is-info bloque-titulo">
+                Precio del viaje
+            </div>
+            <div class="column">
+                <div class="field">
+                    <div class="field">
+                        <label class="label">Precio por pasajero</label>
+                        <h3>$358.55</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="block notification is-info bloque-titulo">
+                Viajeros
+            </div>
+            <div class="gray-bg margin-bottom">
+                <div class="center columns noMargin is-mobile">
+                    <div class="column">
+                        <a><img width="60%" class="image-placeholder" src="images/juan.jpg"></a> <br>
+                        Juan Perez
+                    </div>
+                    <div class="column margin-top">
+                        <div class="block">
+                            <a class="margin-bottom margin-top button is-info" data-view="#ver-perfil">Ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ver-viajes" class="view">
+            <div class="block notification is-info bloque-titulo">
+                Historial
+            </div>
+            <div class="block margin-top center">
+                <i class="fa fa-car car-icon" aria-hidden="true"></i> = Viajes en los que di "RIDE"
+            </div>
+            <h2 class="center margin-bottom subtitle">Proximos viajes</h2>
+            <div class="box azul" data-view="#ver-viaje">
+                <article class="media">
+                    <div class="media-content">
+                        <div class="content f-white center">
+                            <p>
+                                <i class="fa fa-car car-icon" aria-hidden="true"></i> <small> AVEO 2015 / 05 de Junio 2017</small> / <small>Chihuahua - CD. Juarez</small>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <h2 class="center margin-bottom subtitle">Viajes anteriores</h2>
+            <div class="box azul">
+                <article class="media">
+                    <div class="media-content">
+                        <div class="content f-white center">
+                            <p>
+                                <i class="fa fa-car car-icon" aria-hidden="true"></i> <small>AVEO 2015 / 10 de marzo 2017</small> / <small>Chihuahua - Monterrey </small>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="box azul">
+                <article class="media">
+                    <div class="media-content">
+                        <div class="content f-white center">
+                            <p>
+                                <small>LOBO 2015 / 12 de febrero 2017</small> / <small>Creel - Chihuahua </small>
+                                <div class="field center">
+                                    <div class="stars">
+                                        <input class="star star-5" id="star-5" type="radio" name="star"/>
+                                        <label class="star star-5" for="star-5"></label>
+                                        <input class="star star-4" id="star-4" type="radio" name="star"/>
+                                        <label class="star star-4" for="star-4"></label>
+                                        <input class="star star-3" id="star-3" type="radio" name="star"/>
+                                        <label class="star star-3" for="star-3"></label>
+                                        <input class="star star-2" id="star-2" type="radio" name="star" />
+                                        <label class="star star-2" for="star-2"></label>
+                                        <input class="star star-1" id="star-1" type="radio" name="star"/>
+                                        <label class="star star-1" for="star-1"></label>
+                                    </div>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div id="ver-perfil" class="view">
+            <div class="gray-bg">
+                <div class="center">
+                    <a><img width="30%" class="image-placeholder" src="images/juan.jpg"></a>
+                </div>
+            </div>
+
+            <div class="block notification is-info bloque-titulo">
+                Información personal
+            </div>
+
+            <form class="biografia">
+                <div class="columns noMargin is-mobile">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Soy</label>
+                            <h3>Hombre</h3>
+                        </div>
+                        <div class="field">
+                            <label class="label">Nombre</label>
+                            <h3>Juan</h3>
+                        </div>
+                        <div class="field">
+                            <label class="label">Apellidos</label>
+                            <h3>Perez</h3>
+                        </div>
+                        <div class="field">
+                            <label class="label">Año de Nacimiento</label>
+                            <h3>10/05/1990</h3>
+                        </div>
+                        <div class="field">
+                            <label class="label">Minibiografía</label>
+                            <h3>Estudiante de la facultad de contaduria y administración, amante de la naturaleza y me gusta mucho el cine.</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="block notification is-info bloque-titulo">
+                Calificación
+            </div>
+
+            <form class="biografia" method="post">
+                <div class="field center">
+                    <div class="stars">
+                        <input class="star star-5" id="star-5_2" type="radio" name="star" disabled="" />
+                        <label class="star star-5" for="star-5_2"></label>
+                        <input class="star star-4" id="star-4_2" type="radio" name="star" disabled="" checked="" />
+                        <label class="star star-4" for="star-4_2"></label>
+                        <input class="star star-3" id="star-3_2" type="radio" name="star" disabled="" />
+                        <label class="star star-3" for="star-3_2"></label>
+                        <input class="star star-2" id="star-2_2" type="radio" name="star" disabled="" />
+                        <label class="star star-2" for="star-2_2"></label>
+                        <input class="star star-1" id="star-1_2" type="radio" name="star" disabled="" />
+                        <label class="star star-1" for="star-1_2"></label>
+                    </div>
+                </div>
+            </form>
+
+            <div class="block notification is-info bloque-titulo">
+                E-mail
+            </div>
+
+            <form class="biografia" method="post">
+                <div class="field">
+                    <h3>juan@correo.com</h3>
+                </div>
+            </form>
+
+            <div class="block notification is-info bloque-titulo">
+                Número de Celular
+            </div>
+
+            <form class="biografia" method="post">
+                <div class="field">
+                    <h3>+52 614 100 00 00</h3>
+                </div>
+            </form>
+
+            <div class="block notification is-info bloque-titulo">
+                Certificacion identificación oficial <i class="fa fa-star car-icon yellow" aria-hidden="true"></i>
+            </div>
+
+            <form class="biografia" method="post">
+                <div class="field">
+                    <h3> <i class="fa fa-check-circle green car-icon" aria-hidden="true"></i> Carta de no antecedentes penales</h3>
+                </div>
+                <div class="field">
+                    <h3> <i class="fa fa-check-circle green car-icon" aria-hidden="true"></i> Examen medico</h3>
+                </div>
+                <div class="field">
+                    <h3> <i class="fa fa-check-circle green car-icon" aria-hidden="true"></i> IFE/INE</h3>
+                </div>
+            </form>
+
+            <div class="block notification is-info bloque-titulo">
+                Preferencias
+            </div>
+
+            <form class="biografia" method="post">
+                <div class="field">
+                    <h3>- ¡Me encanta platicar!</h3>
+                    <h3>- A veces permito fumar</h3>
+                    <h3>- Las mascotas son bienvenidas</h3>
+                    <h3>- Depende de lo que escuche</h3>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="buscar-viaje" class="view">
+        <div class="block notification is-info bloque-titulo">
+            Origen y destino
+        </div>
+        <div class="column">
+            <div class="field">
+                <label class="label">De</label>
+                <p class="control">
+                    <span class="select">
+                        <select>
+                            <option>Chihuahua, Chihuahua</option>
+                            <option>Hidalgo del Parral, Chihuahua</option>
+                            <option>Cd. Juarez, Chihuahua</option>
+                        </select>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <label class="label">A</label>
+                <p class="control">
+                    <span class="select">
+                        <select>
+                            <option>Chihuahua, Chihuahua</option>
+                            <option>Hidalgo del Parral, Chihuahua</option>
+                            <option>Cd. Juarez, Chihuahua</option>
+                        </select>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="block notification is-info bloque-titulo">
+            Número de plazas
+        </div>
+        <div class="column">
+            <div class="field">
+                <p class="control">
+                    <span class="select">
+                        <select>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="field center margin-top">
+            <a class="button is-info margin-bottom" data-view="#lista-buscar">Buscar viaje</a>
+        </div>
+    </div>
+
+    <div id="lista-buscar" class="view">
+        <div class="block notification is-info bloque-titulo">
+            Buscar viaje
+        </div>
+        <h2 class="center margin-bottom subtitle">Resultados de busqueda:</h2>
+        <div class="box">
+            <article class="media">
+                <div class="media-left">
+                    <figure class="image is-64x64">
+                        <img class="image-placeholder" data-view="#ver-perfil" src="images/juan.jpg" alt="Image">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>Juan Perez</strong> <small>05 de Junio de 2017</small><br>
+                            <p>12:30 p.m. - Chihuahua</p>
+                            <p>15:30 p.m. - Juarez</p>
+                            <b>MX$ 308.55</b> &nbsp; Nissan March
+                        </p>
+                    </div>
+                </div>
+            </article>
+            <div class="field center margin-top">
+                <a class="button is-info margin-bottom" data-view="#seleccionar-ubicacion">Seleccionar viaje</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="seleccionar-ubicacion" class="view">
+        <div class="block notification is-info bloque-titulo">
+            Seleccione sus preferencias:
+        </div>
+        <div class="column">
+            <div class="field">
+                <div class="map" style="height: 200px"></div>
+            </div>
+
+            <div class="field">
+                <div class="field">
+                    <h2 class="center margin-bottom subtitle">Seleccione su método de pago</h2>
+                </div>
+                <p class="control center">
+                    <label class="radio">
+                        <input type="radio" name="question">
+                            **** 0274
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="question">
+                            Efectivo
+                    </label>
+                </p>
+            </div>
+
+            <div class="field center margin-top">
+                <form data-title="Viaje" data-message="aceptado con exito">
+                    <input type="submit" class="button is-info margin-bottom" value="Guardar preferencias">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+</body>
+</html>
